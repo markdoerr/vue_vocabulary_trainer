@@ -21,7 +21,7 @@ var QuestionComponent = Vue.extend({
   // vocabulary[Math.floor(Math.random()*vocabulary.length)].en
   },
   template:   '<div class="vocab-question">' +
-  '                 {{ vocabulary[curr_item].en }}' +
+  '                 {{ vocabulary[curr_item].de }}' +
   '            </div>'
 
 });
@@ -36,8 +36,11 @@ var VocabAnswerComponent = Vue.extend({
 
       text = this.answer.trim();
       if (!this.checked && text) {
-        this.correct = text === this.vocabulary[this.curr_item].de;
-        if (this.correct) this.results.correct_words++;
+        this.correct = text === this.vocabulary[this.curr_item].en;
+        if (this.correct){
+          this.results.correct_words++;
+          this.vocabulary[this.curr_item].en_correct = true;
+        }
         this.checked = true;
       }
     }
@@ -85,6 +88,17 @@ var NextVocabComponent = Vue.extend({
               '</div>'
 });
 
+var VocabStatisticsComponent = Vue.extend({
+  data: function () {
+    return data;
+  },
+  template: '<div>  ' +
+            ' <b-modal id="vocab-statistics" title="Your Score"> ' +
+            ' <p>Hello from modal!</p> '+
+            ' </b-modal>' +
+            '</div>'
+});
+
 var ResultsComponent = Vue.extend({
   data: function () {
     return data;
@@ -101,6 +115,7 @@ var ResultsComponent = Vue.extend({
 Vue.component('question-component', QuestionComponent);
 Vue.component('vocab-answer-component', VocabAnswerComponent);
 Vue.component('correction-feedback-component', CorrectionFeedbackComponent);
+Vue.component('vocab-statistics', VocabStatisticsComponent);
 Vue.component('next-vocab-component', NextVocabComponent);
 Vue.component('results-component', ResultsComponent);
 
