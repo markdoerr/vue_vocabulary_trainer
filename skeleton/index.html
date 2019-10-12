@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue Vocabulary trainer</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./vue_vocab.css">
+</head>
+
+<body>
+<div id="app" class="container">
+  <!--add-vocab-item-component></add-vocab-item-component-->
+  <question-component></question-component>
+  <vocab-answer-component></vocab-answer-component>
+  <correction-feedback-component></correction-feedback-component>
+  <next-vocab-component></next-vocab-component>
+  <div class="footer">
+    <hr/>
+    <results-component></results-component>
+  </div>
+</div>
+<!-- script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+<script src="https://unpkg.com/bootstrap-vue@2.0.4/dist/bootstrap-vue.js" charset="utf-8"></script>
+<script src="vocab_unit1.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
