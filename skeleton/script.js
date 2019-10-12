@@ -60,7 +60,7 @@ var CorrectionFeedbackComponent = Vue.extend({
     return data;
   },
   template:   '<div class="vocab-feedback">' +
-              '  <p> {{ checked ?  (correct ? "Richtig" : "Falsch"): ""  }} </p>'  +
+              '  <p> {{ checked ? (correct ? "richtig :)" : "falsch - richtig wäre: " + vocabulary[this.curr_item].en  ): ""  }} </p>'  +
               '</div>'
 });
 
