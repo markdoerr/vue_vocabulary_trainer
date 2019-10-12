@@ -5,6 +5,7 @@ var data = {
   title: 'Vocabulary test',
   answer: '',
   curr_item: 0,
+  curr_language: "DEU-ENG",
   correct: false,
   checked: false,
 };
@@ -21,7 +22,7 @@ var QuestionComponent = Vue.extend({
   // vocabulary[Math.floor(Math.random()*vocabulary.length)].en
   },
   template:   '<div class="vocab-question">' +
-  '                 {{ vocabulary[curr_item].de }}' +
+  '                 {{ vocabulary[curr_item].de + "(" + curr_language + ")" }}' +
   '            </div>'
 
 });
@@ -46,13 +47,18 @@ var VocabAnswerComponent = Vue.extend({
     }
   },
   // props: ['answer' , 'correct' ],
-  template:
-  '<div class="input-group">'                                                                                        +
-    '<input v-model="answer" @keyup.enter="checkVocab" placeholder="check vocab" type="text" class="form-control">'  +
-    '  <span class="input-group-btn">'                                                                               +
-    '    <button @click="checkVocab" class="btn btn-default" type="button">Check !</button>'                          +
-    '  </span>' +
-    '</div>'
+  template: '<div>' +
+            '  <b-form inline>' +
+            '    <b-input' +
+            '      id="inline-form-input-answer"' +
+            '      class="mb-2 mr-sm-2 mb-sm-0"' +
+            '      placeholder={{ curr_language }}' +
+            '      v-model="answer" @keyup.enter="checkVocab"' +
+            '      type="text" ' +
+            '    ></b-input>' +
+            '    <b-button @click="checkVocab" variant="primary">Check !</b-button>' +
+            '  </b-form>'+
+            '</div>'
 });
 
 var CorrectionFeedbackComponent = Vue.extend({
