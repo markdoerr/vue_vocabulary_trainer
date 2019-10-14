@@ -12,7 +12,7 @@
       <b-form-group label="Training mode">
         <b-form-radio-group
         v-model="selected"
-        :options="learning_mode"
+        :options="learningMode"
         name="radio-inline"
         ></b-form-radio-group>
       </b-form-group>
@@ -26,17 +26,17 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class VocabSettings extends Vue {
-  private selected: string = 'de-en'
-  private learning_mode: LearningMode[] = [
+  private selected: string = 'de-en';
+  private learningMode: any[] = [
       { text: 'DEU-ENG', value: 'de-en' },
       { text: 'ENG-DEU', value: 'en-de' },
-      { text: 'Random', value: 'random' }
-     ]
+      { text: 'Random', value: 'random' },
+    ];
 
-  mounted() {
+  protected mounted() {
        this.$root.$on('bv::dropdown::show', bvEvent => {
-         console.log('Dropdown is about to be shown', bvEvent)
-       })
+         console.log('Dropdown is about to be shown', bvEvent);
+       });
      }
 }
 </script>
