@@ -22,15 +22,16 @@ import { AxiosResponse } from 'axios';
   },
 })
 export default class VocabTrainer extends Vue {
-  curr_vocab_index = 0
+   curr_vocab_index = 0
 
-private vocab: [] = [];
+  private vacab: [] = [];
 
- /*private vocabs = [
+/*
+private vocab = [
         { en: 'tomorrow', de: 'morgen', en_pl: '', language: 'DEU' },
         { en: 'bird', de: 'Vogel', en_pl: 'birds', language: 'DEU' },
-  ];*/
-
+  ];
+*/
   //var curr_vocab = this.vocabs[0]
   private created() {
 		this.$http.get('http://localhost:3000/unit1').then((response: AxiosResponse) => {
@@ -62,7 +63,7 @@ private vocab: [] = [];
        this.curr_vocab_index++;
     }
     else {
-      this.$root.router.push('statistics')
+      this.$root.$router.push('statistics')
       this.curr_vocab_index = 0;
     }
   }

@@ -34,8 +34,8 @@ export default class VocabSettings extends Vue {
     ];
 
   protected mounted() {
-       this.$root.$on('bv::dropdown::show', bvEvent => {
-         console.log('Dropdown is about to be shown', bvEvent);
+       this.$root.$on('bv::dropdown::show', (bvEvent : Event)  => {
+         console.log('Dropdown is about to be shown');
        });
      }
 }
