@@ -10,7 +10,7 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    incrementVocabIndex : state => state.state.curr_vocab_index < num_vocab ? state.curr_vocab_index++ : state.curr_vocab_index = 0
+    incrementVocabIndex : state => state.curr_vocab_index < state.num_vocab ? state.curr_vocab_index++ : state.curr_vocab_index = 0
   },
   actions: {
 

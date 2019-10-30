@@ -13,7 +13,6 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Question, {VocabQ} from '@/components/trainer/Question.vue'; // @ is an alias to /src
 import Answer, {VocabA} from '@/components/trainer/Answer.vue';
-import { AxiosResponse } from 'axios';
 
 @Component({
   components: {
@@ -21,10 +20,10 @@ import { AxiosResponse } from 'axios';
     Answer,
   },
 })
+
 export default class VocabTrainer extends Vue {
    curr_vocab_index = 0
-
-  private vacab: [] = [];
+  private vocab: any[] = [];
 
 /*
 private vocab = [
@@ -34,6 +33,8 @@ private vocab = [
 */
   //var curr_vocab = this.vocabs[0]
   private created() {
+
+   /*
 		this.$http.get('http://localhost:3000/unit1').then((response: AxiosResponse) => {
 			this.vocab = response.data.map((val: any) => ({
 				en: val.en,
@@ -43,19 +44,23 @@ private vocab = [
 				//datePosted: new Date(val.datePosted),
 				//highlighted: val.highlighted,
 			}));
-		});
+		});*/
     // same with fetch api:
-    /*
-    fetch('http://localhost:3000/unit1').then((response: any) => {
-      this.vocab = response.data.map((val: any) => ({
-        en: val.en,
+
+    fetch('http://localhost:3000/unit1')
+      .then( (response: any) => response.json() )
+      .then((data: any) => {
+        this.vocab = data.map((val: any) => ({
+          en: val.en,
         de: val.de,
         en_pl: val.en_pl,
         language: 'DEU',
         //datePosted: new Date(val.datePosted),
         //highlighted: val.highlighted,
-      }));
-    });*/
+        }));
+       })
+      .catch(error => console.error(error));
+
   }
   private nextVocab() {
     console.log("trainer: next vocab ")
