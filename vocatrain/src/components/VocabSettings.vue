@@ -3,9 +3,9 @@
     <div>
       <h4> Select lesson / unit to train </h4>
       <b-dropdown id="unit-dropdown-1" text="Unit ?" class="m-md-2">
-        <b-dropdown-item>Unit 1</b-dropdown-item>
-        <b-dropdown-item>Unit 2</b-dropdown-item>
-        <b-dropdown-item>Unit 3</b-dropdown-item>
+        <b-dropdown-item v-for="item in dropdown_items" v-model="vocab_unit_selected" >
+           {{item}}
+         </b-dropdown-item>"
       </b-dropdown>
     </div>
     <div class="training-mode">
@@ -26,12 +26,35 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class VocabSettings extends Vue {
-  private selected: string = 'de-en';
+  private selected:string = 'de-en'
+  private vocab_unit_selected:string = 'unit1'
+  
   private learningMode: any[] = [
       { text: 'DEU-ENG', value: 'de-en' },
       { text: 'ENG-DEU', value: 'en-de' },
       { text: 'Random', value: 'random' },
-    ];
+    ]
+  private dropdown_items: string[] = ['unit1', 'unit2']
+
+  /*function () : string[] {
+    var unit_arr:string[];
+
+    unit_arr.push('unit2')
+
+    return unit_arr
+  }*/
+
+  private computed: object =  {
+    dropdown_items_ (this:any) {
+
+      var dropdown_item_html:string = ""
+
+      for (var unit of this.$store.state.num_units ) {
+        dropdown_item_html += "<b-dropdown-item> unit" + unit + " </b-dropdown-item>"
+      }
+      return dropdown_item_html
+    }
+  }
 
   protected mounted() {
        this.$root.$on('bv::dropdown::show', (bvEvent : Event)  => {

@@ -25,15 +25,15 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 export interface VocabA {
-  language: string;
-	en: string;
-	de: string;
-	en_pl: string;
+  language: string
+	en: string
+	de: string
+	en_pl: string
 }
 
 @Component
 export default class Answer extends Vue {
-  @Prop() private vocab!: VocabA;
+  @Prop() private vocab!: VocabA
 
   checked = false
   correct = false
@@ -43,8 +43,9 @@ export default class Answer extends Vue {
   checkVocab() {
     var text: string = this.answer.trim();
     if (!this.checked && text) {
-      if (text === this.vocab.en){
+      if (text == this.vocab.en){
         this.answerFeedback = "richtig :)"
+        this.$store.commit('incrementCorrectWords')
         //this.results.correct_words++;
         //this.vocabulary[this.curr_item].en_correct = true;
       }
