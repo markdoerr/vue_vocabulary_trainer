@@ -1,6 +1,8 @@
 /*
  to use axio and the JSON server, please install:
    sudo npm install -g json-server
+   in assets run:
+    json-server --watch vocab_unit1.json
 */
 <template>
   <div class="vocab-trainer">
