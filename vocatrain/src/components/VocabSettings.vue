@@ -4,9 +4,7 @@
       <h4> Select lesson / unit to train </h4>
       <b-dropdown id="unit-dropdown-1" 
                   text="Unit ?" 
-                  class="m-md-2" 
-                  v-model="vocab_unit_selected"
-                  >
+                  class="m-md-2" >
         <b-dropdown-item v-for="item in dropdown_items"
               :key="item.id" 
               :value="item.value"
@@ -18,12 +16,13 @@
     <div class="training-mode">
       <b-form-group label="Training mode">
         <b-form-radio-group
-        v-model="selected"
+        v-model="trainings_mode"
         :options="learningMode"
         name="radio-inline"
+        @input="setTrainingsMode"
         ></b-form-radio-group>
       </b-form-group>
-      <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
+      <div class="mt-3">Selected: <strong>{{ trainings_mode }}</strong></div>
     </div>
   </div>
 </template>
@@ -33,7 +32,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class VocabSettings extends Vue {
-  selected:string = 'de-en'
+  private trainings_mode:string = 'de-en'
   private vocab_unit_selected:string = '1'
   
   learningMode: any[] = [
@@ -46,14 +45,17 @@ export default class VocabSettings extends Vue {
   setUnit(unit:string) {
     this.$store.commit('setVocabUnit',unit)
   }
+  
+  setTrainingsMode() {
+    this.$store.commit('setTrainingsMode',this.trainings_mode)
 
-  /*function () : string[] {
-    var unit_arr:string[];
+    if (this.trainings_mode == "de-en") this.$store.commit('setTargetLanguage','ENG');
+    if (this.trainings_mode == "en-de") this.$store.commit('setTargetLanguage','DEU');
+  }
 
-    unit_arr.push('unit2')
-
-    return unit_arr
-  }*/
+  showDebugMessage() {
+     console.log('dropdonw item selected');
+  }
 
   /*private computed: object =  {
     dropdown_items_ (this:any) {

@@ -1,5 +1,5 @@
 /*
- to use axio and the JSON server, please install:
+   JSON server, please install:
    sudo npm install -g json-server
    in assets run:
     json-server --watch vocab_unit1.json
@@ -13,8 +13,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import Question, {VocabQ} from '@/components/trainer/Question.vue' // @ is an alias to /src
-import Answer, {VocabA} from '@/components/trainer/Answer.vue'
+import Question, {VocabQuest} from '@/components/trainer/Question.vue' // @ is an alias to /src
+import Answer, {VocabAns} from '@/components/trainer/Answer.vue'
 
 @Component({
   components: {
@@ -26,27 +26,9 @@ import Answer, {VocabA} from '@/components/trainer/Answer.vue'
 export default class VocabTrainer extends Vue {
   private vocab: any[] = []
 
-/*
-private vocab = [
-        { en: 'tomorrow', de: 'morgen', en_pl: '', language: 'DEU' },
-        { en: 'bird', de: 'Vogel', en_pl: 'birds', language: 'DEU' },
-  ];
-*/
-  //var curr_vocab = this.vocabs[0]
   private created() {
 
-   /*
-		this.$http.get('http://localhost:3000/unit1').then((response: AxiosResponse) => {
-			this.vocab = response.data.map((val: any) => ({
-				en: val.en,
-				de: val.de,
-				en_pl: val.en_pl,
-        language: 'DEU',
-				//datePosted: new Date(val.datePosted),
-				//highlighted: val.highlighted,
-			}));
-		});*/
-    // same with fetch api:
+    // fetching json data with fetch api (no axio needed !)
 
     fetch('http://localhost:3000/' + this.$store.state.curr_vocab_unit )
       .then( (response: any) => response.json() )
@@ -63,8 +45,7 @@ private vocab = [
       .then( () => { console.log(this.vocab)
              console.log(this.vocab.length)
              this.$store.commit('setNumVocab', this.vocab.length  )
-      }
-      )
+      })
       .catch(error => console.error(error))
   }
   private nextVocab() {

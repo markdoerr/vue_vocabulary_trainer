@@ -2,7 +2,7 @@
   <div class="statistics">
     <h1>This is the statistics page</h1>
 
-    <h2> correct words: {{corr_words}} / {{vocab_num}} </h2>
+    <h2 id="correct"> correct words: {{corr_words}} / {{vocab_num}} </h2>
 
     {{congratulations}}
 
@@ -14,7 +14,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 //@Component({})
-
+// change to typescritp syntax !
 export default  { // class Statistics extends Vue {
 
  computed:  {
@@ -39,3 +39,13 @@ export default  { // class Statistics extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.statistics {
+ padding: 3ex;
+}
+#correct {
+  padding: 5ex;
+  color: red;
+}
+</style>

@@ -24,7 +24,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-export interface VocabA {
+export interface VocabAns {
   language: string
 	en: string
 	de: string
@@ -33,7 +33,7 @@ export interface VocabA {
 
 @Component
 export default class Answer extends Vue {
-  @Prop() private vocab!: VocabA
+  @Prop() private vocab!: VocabAns
 
   checked = false
   correct = false
@@ -77,5 +77,8 @@ export default class Answer extends Vue {
    font-size: 7ex;
    color: blue;
    padding: 3ex;
+}
+.next-vocab button{
+  font-size: 40px;
 }
 </style>
